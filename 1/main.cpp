@@ -7,6 +7,7 @@ vector<string> getData() {
 // using container because of easier resizing, and i want to allow dynamic number of lines allowed
 
     vector<string> data;
+    // for this one i could use just int, but I'll reuse this chunk of code in the next puzzles
 
     bool inputEnabled = true;
 
@@ -32,10 +33,31 @@ int main()
     vector<string> data = getData();
     // run the method for retrieving from user multiline data input
 
+    int increaseCounter = 0;
+    // we only care about increases so we don't need to count decreased aswell
+
     for (size_t i = 0; i != data.size(); ++i) {
         // using index based for loop, because probably later on i will need indexes to do some operations on these values
-        cout << data[i] << endl;
+        cout << data[i];
+
+        if (i == 0) {
+            // no previous data, unknown if depth increased or decreased
+             cout << " (N/A - no previous measurment)" << endl;
+        } else {
+            if (stoi(data[i-1]) < stoi(data[i])) {
+                cout << " (increased)" << endl;
+                increaseCounter++;
+            } else if (stoi(data[i-1]) > stoi(data[i])) {
+                cout << " (decreased)" << endl;
+            } else {
+                cout << " (no change)" << endl;
+                // just in case, because that can of course happen
+            }
+        }
     }
+
+    cout << increaseCounter << endl;
+    // and print the result
 
     cin;
     // waits for any key to close the program, just to see results
