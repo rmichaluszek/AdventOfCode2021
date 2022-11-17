@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 #include <iostream>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -31,6 +33,21 @@ int main()
 {
     vector<string> data = getData();
 
+    for (size_t i = 0; i != data.size(); ++i) {
+
+        string line = data[i];
+        string splitCharacter = " ";
+        // determine by which character the line should be divided into command and value
+
+        string command = line.substr(0, line.find(splitCharacter));
+        // first part of the line
+        string valueStr = line.substr(line.find(splitCharacter), (line.length() - line.find(splitCharacter)));
+        int value = stoi(valueStr);
+        // second part of the line
+
+        cout << command << endl;
+        cout << value << endl;
+    }
     cin;
     // waits for any key to close the program, just to see results
 
