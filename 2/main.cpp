@@ -29,9 +29,29 @@ vector<string> getData() {
     return data;
 }
 
+
+// commands as enums to easy use them in switch casee
+enum Commands {
+    Forward,
+    Down,
+    Up
+};
+Commands resolveCommands(string input);
+
+// this one will match the command string with it's enum ( for the switch use )
+Commands resolveCommands(string input) {
+    if( input == "forward" ) return Forward;
+    if( input == "down" ) return Down;
+    if( input == "up" ) return Up;
+    return Forward; // should never happen in this scenario of puzzle, but there needs to be a default return value
+}
+
 int main()
 {
     vector<string> data = getData();
+
+    int horizontalPos = 0;
+    int depth = 0;
 
     for (size_t i = 0; i != data.size(); ++i) {
 
@@ -45,9 +65,28 @@ int main()
         int value = stoi(valueStr);
         // second part of the line
 
-        cout << command << endl;
-        cout << value << endl;
+
+        // just execute the commands and change values depending on what's in input
+        switch(resolveCommands(command)) {
+            case Forward:
+                horizontalPos += value;
+                break;
+            case Down:
+                depth += value;
+                break;
+            case Up:
+                depth -= value;
+                break;
+            // should be default and other types of validation, but for the puzzles, I'm doing only what's needed to run the puzzle
+        }
     }
+
+    // print the depth and the horizontal position
+    cout << "Horizontal: " << horizontalPos << " / Depth: " << depth << endl;
+
+    // and the multiplication of these
+    cout << horizontalPos*depth << endl;
+
     cin;
     // waits for any key to close the program, just to see results
 
