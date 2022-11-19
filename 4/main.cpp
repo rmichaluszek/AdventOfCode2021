@@ -71,6 +71,42 @@ class BingoBoard {
             cout << endl;
         }
     }
+
+    int UnmarkedValuesScore() {
+        int score = 0;
+        for(int y=0;y<5;y++) {
+            for(int x=0;x<5;x++) {
+                if(!markedValues[x][y])
+                    score += values[x][y];
+            }
+        }
+        return score;
+    }
+
+    int MarkValues(int value) {
+        for(int y=0;y<5;y++) {
+            for(int x=0;x<5;x++) {
+                if (values[x][y] == value) {
+                    markedValues[x][y] = true; // mark this positions as value that has been typed
+
+                    // and check in this column and row if the bingo is found
+
+                    // vertical
+                    if(markedValues[x][0]&&markedValues[x][1]&&markedValues[x][2]&&markedValues[x][3]&&markedValues[x][4]) {
+                        return UnmarkedValuesScore();
+                    }
+                    // horizontal
+                    else if(markedValues[0][y]&&markedValues[1][y]&&markedValues[2][y]&&markedValues[3][y]&&markedValues[4][y]) {
+                        return UnmarkedValuesScore();
+                    }
+
+                    return 0; // we assume the value can be on the board only one time, so just break the loops
+                }
+
+            }
+        }
+        return 0;
+    }
 };
 
 int main()
@@ -137,8 +173,24 @@ int main()
         }
 
     }
-    // data is split into valus and boards, time to play bingo
+    // data is split into values and boards, time to play bingo
 
+    bool leaveLoops = false;
+
+    for(size_t i=0;i != bingoValues.size();i++) {
+        for(size_t b=0; b!= bingoBoards.size();b++) {
+            int score = bingoBoards[b].MarkValues(bingoValues[i]);
+            if(score) {
+                cout << "Winner's board score is: " << score << endl;
+                cout << "Last bingo number was: " << bingoValues[i] << endl;
+                cout << "Final score: " << score*bingoValues[i] << endl;
+                leaveLoops = true;
+            }
+
+            if(leaveLoops) break;
+        }
+        if(leaveLoops) break;
+    }
 
     cin;
     // waits for any key to close the program, just to see results
