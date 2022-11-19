@@ -28,7 +28,7 @@ vector<string> getData() {
         if (entersPressed==0)
             data.push_back(l);
         else if (entersPressed == 1)
-            data.push_back("\n");
+            data.push_back("Empty");
         else inputEnabled = false;
             // if it's not empty, add the value to the container
     }
@@ -62,19 +62,28 @@ class BingoBoard {
         //
         return false;
     }
+
+    void DisplayValues() {
+        for(int i=0; i< 5; i++) {
+            for(int j=0; j< 5; j++) {
+                cout << values[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
 };
 
 int main()
 {
     vector<string> data = getData();
-
     vector<int> bingoValues;
+    vector<BingoBoard> bingoBoards;
+
+    int bingoBoardStartingLine = 2; // first one starts at third line
 
     for (size_t i = 0; i != data.size(); ++i) {
         // first line are values, and later on are bingo boards every "/n" line
-
         if (i == 0) {
-
             stringstream valuesStream(data[0]);
 
             while(valuesStream.good()) {
@@ -82,14 +91,55 @@ int main()
                 // split values by comma
                 string str;
                 getline(valuesStream,str,',');
-                int value = stoi(str);
+                int value = stoi(str.c_str());
                 bingoValues.push_back(value);
+            }
+        } else {
+            if( i == bingoBoardStartingLine ) {
 
-                cout << value << endl;
+                BingoBoard newBingoBoard;
+                for(int y = 0; y < 5; y++) {
+
+                    vector<int> values;
+                    // split the line into 5 integer values
+
+                    regex double_spaces("[ ]{2,}");
+                    data[bingoBoardStartingLine+y] = regex_replace(data[bingoBoardStartingLine+y], double_spaces, " ");
+                    // sometimes there are two spaces between numbers so we skip empty symbol
+
+                    if (data[bingoBoardStartingLine+y][0] == ' ') {
+                        data[bingoBoardStartingLine+y].erase(data[bingoBoardStartingLine+y].begin());
+                    }
+                    // and sometimes the whitespace is at the begging, so get rid of it aswell
+
+                    stringstream valuesStream(data[bingoBoardStartingLine+y]);
+
+                    while(valuesStream.good()) {
+                        // split values by space
+                        string str;
+                        getline(valuesStream,str,' ');
+                        int value = stoi(str);
+                        values.push_back(value);
+                    }
+
+                    for(int j = 0; j<5; j++) {
+                        newBingoBoard.values[y][j] = values[j];
+                    }
+                }
+
+                bingoBoards.push_back(newBingoBoard);
+                // check if there are bingo boards left
+                if(bingoBoardStartingLine+5 < data.size())
+                {
+                    bingoBoardStartingLine+= 6;
+                }
             }
         }
 
     }
+    // data is split into valus and boards, time to play bingo
+
+
     cin;
     // waits for any key to close the program, just to see results
 
