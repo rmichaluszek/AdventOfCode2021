@@ -1,6 +1,7 @@
 #ifndef LINE_H
 #define LINE_H
 
+#include <bits/stdc++.h>
 
 class Line
 {
@@ -8,11 +9,15 @@ class Line
         Line();
         virtual ~Line();
 
-        int x1, x2, y1, y2;
+        short x1, x2, y1, y2;
+
+        std::vector<std::pair<short, short>> getCoveredPoints();
+
 
     protected:
 
     private:
+
 };
 
 #endif // LINE_H

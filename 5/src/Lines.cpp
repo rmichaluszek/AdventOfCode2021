@@ -4,11 +4,9 @@
 #include "Line.h"
 
 Lines::Lines() {
-
 }
 
 Lines::~Lines() {
-
 }
 
 void Lines::ParseData(std::vector<std::string> data) {
@@ -29,12 +27,16 @@ void Lines::ParseData(std::vector<std::string> data) {
         std::string x2 = lineEnd.substr(0, lineEnd.find(pointsDelimiter));
         std::string y2 = lineEnd.substr(lineEnd.find(pointsDelimiter)+1, lineEnd.find(pointsDelimiter)+2);
 
-        Line newLine;
-        newLine.x1 = std::stoi(x1);
-        newLine.y1 = std::stoi(y1);
-        newLine.x2 = std::stoi(x2);
-        newLine.y2 = std::stoi(y2);
+        // were told to consider only horizontal and vertical line, so push only these into the stack
 
-        lines.push_back(newLine);
+        if (x1==x2 || y1==y2) {
+            Line newLine;
+            newLine.x1 = std::stoi(x1);
+            newLine.y1 = std::stoi(y1);
+            newLine.x2 = std::stoi(x2);
+            newLine.y2 = std::stoi(y2);
+
+            lines.push_back(newLine);
+        }
     }
 }
