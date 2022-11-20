@@ -1,12 +1,16 @@
 # depslib dependency file v1.0
-1668955907 source:c:\adventofcode2021\6\main.cpp
+1668956417 source:c:\adventofcode2021\6\main.cpp
 	<bits/stdc++.h>
 	<iostream>
 	"DataLoader.h"
+	"Fish.h"
 
 1668956033 c:\adventofcode2021\6\include\dataloader.h
 	<bits/stdc++.h>
 
 1668955933 source:c:\adventofcode2021\6\src\dataloader.cpp
 	"DataLoader.h"
+
+1668956465 c:\adventofcode2021\6\include\fish.h
+	<bits/stdc++.h>
 
