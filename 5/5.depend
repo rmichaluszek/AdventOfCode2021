@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1668902915 source:c:\adventofcode2021\5\main.cpp
+	<bits/stdc++.h>
+	<iostream>
+	"DataLoader.h"
+	"Lines.h"
+	"Line.h"
+
+1668902147 c:\adventofcode2021\5\include\dataloader.h
+	<bits/stdc++.h>
+
+1668902138 source:c:\adventofcode2021\5\src\dataloader.cpp
+	"DataLoader.h"
+
+1668903684 source:c:\adventofcode2021\5\src\lines.cpp
+	"Lines.h"
+	<bits/stdc++.h>
+	"Line.h"
+
+1668903608 c:\adventofcode2021\5\include\lines.h
+	"Line.h"
+	<bits/stdc++.h>
+
+1668902770 source:c:\adventofcode2021\5\src\line.cpp
+	"Line.h"
+
+1668902787 c:\adventofcode2021\5\include\line.h
+
