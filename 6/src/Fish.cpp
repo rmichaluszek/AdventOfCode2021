@@ -18,12 +18,20 @@ void Fish::ParseData(std::vector<std::string> data) {
         getline(initialFishStream,str,',');
         short daysLeft = std::stoi(str.c_str());
         this->fishList.push_back(daysLeft);
-
-        std::cout << daysLeft << std::endl;
     }
 }
 
-int Fish::SimulateDay() {
+void Fish::SimulateDay() {
 
-    return this->fishList.size();
+    for(size_t i=0; i!=this->fishList.size();i++) {
+
+        this->fishList[i]--;
+
+        if(this->fishList[i] <= -1) {
+            // spawn new fish, but add it another 1 day because it will be decremented today,
+            // another way would be to spawn the new fish at the start of vector
+            this->fishList.push_back(9); // new fish needs 8 days to spawn another fish
+            this->fishList[i] = 6; // and this one needs 6 days to spawn another
+        }
+    }
 }

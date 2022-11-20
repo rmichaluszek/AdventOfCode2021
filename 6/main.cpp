@@ -12,6 +12,12 @@ int main() {
     Fish fish;
     fish.ParseData(data);
 
+    for(int i=0; i< 80; i++) {
+        fish.SimulateDay();
+    }
+
+    std::cout << "After 80 days there are " << fish.fishList.size() << " fish." << std::endl;
+
     system("pause");
     // waits for any key to close the program, just to see results
 

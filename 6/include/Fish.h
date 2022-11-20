@@ -13,8 +13,7 @@ class Fish
         std::vector<short> fishList;
 
         void ParseData(std::vector<std::string> data);
-
-        int SimulateDay();
+        void SimulateDay();
 
     protected:
 
