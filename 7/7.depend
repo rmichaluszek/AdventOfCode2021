@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1668957813 source:c:\adventofcode2021\7\src\dataloader.cpp
+	"DataLoader.h"
+
+1668957807 c:\adventofcode2021\7\include\dataloader.h
+	<bits/stdc++.h>
+
