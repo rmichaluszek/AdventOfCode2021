@@ -5,3 +5,16 @@
 1668957807 c:\adventofcode2021\7\include\dataloader.h
 	<bits/stdc++.h>
 
+1668966296 source:c:\adventofcode2021\7\main.cpp
+	<bits/stdc++.h>
+	<iostream>
+	"DataLoader.h"
+	"Crabs.h"
+
+1668967764 c:\adventofcode2021\7\include\crabs.h
+	<bits/stdc++.h>
+
+1668967634 source:c:\adventofcode2021\7\src\crabs.cpp
+	"Crabs.h"
+	<iostream>
+
