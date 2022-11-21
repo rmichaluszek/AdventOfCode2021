@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1669056907 source:c:\adventofcode2021\8\main.cpp
+	<bits/stdc++.h>
+	<iostream>
+	"DataLoader.h"
+	"Displays.h"
+
+1669055573 c:\adventofcode2021\8\include\dataloader.h
+	<bits/stdc++.h>
+
+1669055585 source:c:\adventofcode2021\8\src\dataloader.cpp
+	"DataLoader.h"
+
+1669057044 source:c:\adventofcode2021\8\src\displays.cpp
+	"Displays.h"
+
+1669056336 c:\adventofcode2021\8\include\displays.h
+	<bits/stdc++.h>
+
