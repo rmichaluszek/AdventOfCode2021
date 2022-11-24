@@ -53,6 +53,11 @@ int main()
     int horizontalPos = 0;
     int depth = 0;
 
+    // part 2
+    int aim = 0;
+    int horizontalPos2 = 0;
+    int depth2 = 0;
+
     for (size_t i = 0; i != data.size(); ++i) {
 
         string line = data[i];
@@ -70,22 +75,38 @@ int main()
         switch(resolveCommands(command)) {
             case Forward:
                 horizontalPos += value;
+
+                horizontalPos2 += value;
+                depth2 += aim*value;
                 break;
             case Down:
                 depth += value;
+
+                aim += value;
                 break;
             case Up:
                 depth -= value;
+
+                aim -= value;
                 break;
             // should be default and other types of validation, but for the puzzles, I'm doing only what's needed to run the puzzle
         }
+
     }
 
     // print the depth and the horizontal position
+
+    cout << "Part 1" << endl;
     cout << "Horizontal: " << horizontalPos << " / Depth: " << depth << endl;
 
     // and the multiplication of these
     cout << horizontalPos*depth << endl;
+
+    cout << "Part 2" << endl;
+    cout << "Horizontal: " << horizontalPos2 << " / Depth: " << depth2 << endl;
+
+    // and the multiplication of these
+    cout << horizontalPos2*depth2 << endl;
 
     cin;
     // waits for any key to close the program, just to see results

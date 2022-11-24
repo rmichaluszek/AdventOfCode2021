@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1668723799 source:c:\adventofcode2021\2\main.cpp
+1669317232 source:c:\adventofcode2021\2\main.cpp
 	<bits/stdc++.h>
 	<iostream>
 	<sstream>
