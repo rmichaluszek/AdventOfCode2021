@@ -31,6 +31,9 @@ int main()
 {
     vector<string> data = getData();
 
+    vector<string> oxygenData = data;
+    vector<string> co2Data = data;
+
     int bitsLength = data[0].length();
 
     int numberOfOnes[bitsLength] = { 0 };
@@ -70,7 +73,69 @@ int main()
     int epsilonPower = stoi(epsilonBits, 0, 2);
 
     // and print the result of the puzzle
-    cout << gammaPower*epsilonPower << endl;
+    cout << "Part 1: " << gammaPower*epsilonPower << endl;
+
+    // part 2
+
+    // oxygen
+    for (short j = 0; j < bitsLength; j++) {
+        short ones = 0;
+        short zeros = 0;
+        for(size_t i=0; i!=oxygenData.size();i++) {
+            char *bit = new char(oxygenData[i][j]);
+            if(*bit=='0') zeros++;
+            else if(*bit=='1') ones++;
+
+            delete bit;
+        }
+
+        char bitToKeep = (ones>=zeros)? '1' : '0';
+
+        for(size_t i=0; i<oxygenData.size();i++) {
+            if(i<oxygenData.size()) {
+                char bit = oxygenData[i][j];
+                if(bit!=bitToKeep) {
+                    oxygenData.erase(oxygenData.begin() + i);
+                    i--;
+                }
+            }
+        }
+
+        if(oxygenData.size() == 1) {
+            break;
+        }
+    }
+    // carbon
+    for (short j = 0; j < bitsLength; j++) {
+        short ones = 0;
+        short zeros = 0;
+        for(size_t i=0; i!=co2Data.size();i++) {
+            char *bit = new char(co2Data[i][j]);
+            if(*bit=='0') zeros++;
+            else if(*bit=='1') ones++;
+
+            delete bit;
+        }
+
+        char bitToKeep = (zeros<=ones)? '0' : '1';
+
+        for(size_t i=0; i<co2Data.size();i++) {
+            if(i<co2Data.size()) {
+                char bit = co2Data[i][j];
+                if(bit!=bitToKeep) {
+                    co2Data.erase(co2Data.begin() + i);
+                    i--;
+                }
+            }
+        }
+
+        if(co2Data.size() == 1) {
+            break;
+        }
+    }
+
+    cout << "Part 2: " << stoi(oxygenData[0],0,2)*stoi(co2Data[0],0,2) << endl;
+
     cin;
     // waits for any key to close the program, just to see results
 
