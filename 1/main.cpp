@@ -34,6 +34,8 @@ int main()
     // run the method for retrieving from user multiline data input
 
     int increaseCounter = 0;
+    int increaseSumCounter = 0;
+    int previousSum = 0;
     // we only care about increases so we don't need to count decreased aswell
 
     for (size_t i = 0; i != data.size(); ++i) {
@@ -54,10 +56,28 @@ int main()
                 // just in case, because that can of course happen
             }
         }
+
+        // part 2 calculations
+        if(i+2 < data.size()) {
+            // check  if we can do a sum of 3 numbers
+            int sum = stoi(data[i]) + stoi(data[i+1]) + stoi(data[i+2]);
+            if(i > 0) { // if this is less, then we have no previous sum of 3 numbers
+                if(sum >previousSum) {
+                    increaseSumCounter++;
+                }
+            }
+            previousSum = sum;
+
+        }
     }
 
-    cout << increaseCounter << endl;
-    // and print the result
+    cout << "Part 1: " << increaseCounter << endl;
+    // and print the result of part 1
+
+
+    cout << "Part 2: " << increaseSumCounter << endl;
+    // print the part 2 result
+
 
     cin;
     // waits for any key to close the program, just to see results
