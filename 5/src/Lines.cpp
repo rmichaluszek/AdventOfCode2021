@@ -44,6 +44,8 @@ void Lines::ParseData(std::vector<std::string> data) {
             newLine.y1 = y1;
             newLine.x2 = x2;
             newLine.y2 = y2;
+
+            lines.push_back(newLine);
         }
     }
 }
