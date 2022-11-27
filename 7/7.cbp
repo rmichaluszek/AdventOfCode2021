@@ -24,8 +24,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Crabs.h" />
 		<Unit filename="include/DataLoader.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Crabs.cpp" />
 		<Unit filename="src/DataLoader.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

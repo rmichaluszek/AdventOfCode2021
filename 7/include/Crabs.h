@@ -12,7 +12,8 @@ class Crabs
         std::vector<short> crabsPositions;
         void ParseData(std::vector<std::string> data);
 
-        int Solve();
+        int SolvePart1();
+        int SolvePart2();
 
     protected:
 
