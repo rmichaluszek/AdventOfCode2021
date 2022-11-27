@@ -22,16 +22,14 @@ int main() {
         }
     }
 
+
+    // insert only horizontal and vertical lines into diagram
     for(Line l : lines.lines) {
         std::vector<std::pair<short,short>> points = l.getCoveredPoints();
         for(size_t i=0;i<points.size();i++) {
             diagram[ std::get<0>(points[i]) ][ std::get<1>(points[i])  ]++;
         }
     }
-
-
-
-    // check how many points are overlapping more than two times
     short moreThanTwoOverLapsCounter = 0;
     for(int i = 0; i < 1000;i++) {
         for(int j = 0; j < 1000;j++) {
@@ -41,8 +39,25 @@ int main() {
         }
     }
 
-    std::cout << "The result is: " << moreThanTwoOverLapsCounter << std::endl;
 
+    // add to it diagonal lines
+    for(Line l : lines.lines) {
+        std::vector<std::pair<short,short>> points = l.getDiagonalCoveredPoints();
+        for(size_t i=0;i<points.size();i++) {
+            diagram[ std::get<0>(points[i]) ][ std::get<1>(points[i])  ]++;
+        }
+    }
+    short moreThanTwoOverLapsCounterWithDiagonal = 0;
+    for(int i = 0; i < 1000;i++) {
+        for(int j = 0; j < 1000;j++) {
+            if(diagram[j][i] >= 2) {
+                moreThanTwoOverLapsCounterWithDiagonal++;
+            }
+        }
+    }
+
+    std::cout << "Part 1 result: " << moreThanTwoOverLapsCounter << std::endl;
+    std::cout << "Part 2 result: " << moreThanTwoOverLapsCounterWithDiagonal << std::endl;
 
     system("pause");
     // waits for any key to close the program, just to see results
