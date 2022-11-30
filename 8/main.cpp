@@ -13,6 +13,7 @@ int main() {
     displays.ParseData(data);
 
     std::cout << "There are " << displays.GetUniqueNumbersAmount() << " unique numbers" << std::endl;
+    std::cout << "Sum of all outputs' values is " << displays.GetOutputValues() << std::endl;
 
     system("pause");
     // waits for any key to close the program, just to see results

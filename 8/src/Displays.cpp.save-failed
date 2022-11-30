@@ -19,6 +19,8 @@ void Displays::ParseData(std::vector<std::string> data) {
         std::string input = data[i].substr(0,data[i].find(delimiter)+delimiter.length()-3);
         std::string output = data[i].substr(data[i].find(delimiter)+delimiter.length(), data[i].length());
 
+        std::cout << "Input:[" << input << "] Output:{" << output << "]"<< std::endl;
+
         this->inputs.push_back(input);
         this->outputs.push_back(output);
     }
@@ -75,7 +77,7 @@ long long Displays::GetOutputValues() {
         std::stringstream initialDataOutputsForResults(this->outputs[i]);
 
 
-        std::string numbersDecoded[10] = {""};
+        std::string numbersDecoded[10] = { "unset"};
         std::vector<std::string> numbersYetToDecode;
 
 
@@ -140,15 +142,20 @@ long long Displays::GetOutputValues() {
                 if(numbersYetToDecode[x].length()==6) {
                     if(IsNumberInAnotherNumber(numbersDecoded[4],numbersYetToDecode[x])) {
                         numbersDecoded[9] = numbersYetToDecode[x];
+                        std::cout << "Znalazlo 9: " << numbersYetToDecode[x]<< std::endl;
+
                         numbersYetToDecode.erase(numbersYetToDecode.begin()+x);
                         break;
                     } else if(IsNumberInAnotherNumber(numbersDecoded[7],numbersYetToDecode[x])) {
                         numbersDecoded[0] = numbersYetToDecode[x];
+                        std::cout << "Znalazlo 0: " << numbersYetToDecode[x]<<std::endl;
+
                         numbersYetToDecode.erase(numbersYetToDecode.begin()+x);
                         break;
                     } else {
                         // it has to be 6
                         numbersDecoded[6] = numbersYetToDecode[x];
+                        std::cout << "Znalazlo 6: " << numbersYetToDecode[x]<< std::endl;
                         numbersYetToDecode.erase(numbersYetToDecode.begin()+x);
                         break;
                     }
@@ -157,18 +164,21 @@ long long Displays::GetOutputValues() {
 
                         if(IsNumberInAnotherNumber(numbersDecoded[1],numbersYetToDecode[x])) {
                             numbersDecoded[3] = numbersYetToDecode[x];
+                            std::cout << "Znalazlo 3: " << numbersYetToDecode[x]<< std::endl;
                             numbersYetToDecode.erase(numbersYetToDecode.begin()+x);
                             break;
                         }
-                        if(numbersDecoded[6] != "") {
+                        if(numbersDecoded[6] != "unset") {
                             if(IsNumberInAnotherNumber(numbersYetToDecode[x],numbersDecoded[6])) {
 
                                 numbersDecoded[5] = numbersYetToDecode[x];
+                                std::cout << "Znalazlo 5: " << numbersYetToDecode[x]<< std::endl;
                                 numbersYetToDecode.erase(numbersYetToDecode.begin()+x);
                                 break;
                             } else {
                                 // it has to be 2
                                 numbersDecoded[2] = numbersYetToDecode[x];
+                                std::cout << "Znalazlo 2: " << numbersYetToDecode[x] <<std::endl;
                                 numbersYetToDecode.erase(numbersYetToDecode.begin()+x);
                                 break;
                             }
@@ -190,10 +200,12 @@ long long Displays::GetOutputValues() {
             for(int i=0; i<sizeof(numbersDecoded) / sizeof(numbersDecoded[0]);i++) {
                 if(sortedWires==numbersDecoded[i]){
                     outputNumber+= std::to_string(i);
+                    std::cout << "string to i: " << i << std::endl;
 
                 }
             }
         }
+        std::cout << "Output stoi: " << outputNumber  << " PO:" << stoi(outputNumber) << std::endl;
         result += stoi(outputNumber);
 
     }
